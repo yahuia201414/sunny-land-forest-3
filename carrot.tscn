@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://c566vfi6kprxp"]
+
+[ext_resource type="Texture2D" uid="uid://d17eo8cdjotw1" path="res://Pickups/Carrot/carrot.png" id="1_f70j6"]
+[ext_resource type="Script" path="res://Pickups/Carrot/1.gd" id="1_ry0ns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krv6u"]
+atlas = ExtResource("1_f70j6")
+region = Rect2(0, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_judnc"]
+atlas = ExtResource("1_f70j6")
+region = Rect2(17, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnsan"]
+atlas = ExtResource("1_f70j6")
+region = Rect2(34, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsv7s"]
+atlas = ExtResource("1_f70j6")
+region = Rect2(51, 0, 17, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0f44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krv6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_judnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnsan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsv7s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adsgl"]
+
+[node name="Carrot" type="Area2D"]
+script = ExtResource("1_ry0ns")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m0f44")
+autoplay = "default"
+frame_progress = 0.340057
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_adsgl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

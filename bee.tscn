@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjcyy51wg5x2y"]
+
+[ext_resource type="Script" path="res://Enemies/Bee/bee.gd" id="1_55xfl"]
+[ext_resource type="Texture2D" uid="uid://dse8reu3d6edd" path="res://Enemies/Bee/bee.png" id="1_syflb"]
+[ext_resource type="Texture2D" uid="uid://bvlbmps1gvtpn" path="res://Enemies/Slug/pixil-frame-0(4).png" id="3_gaivo"]
+[ext_resource type="Texture2D" uid="uid://cquvc2pf31ghl" path="res://Enemies/Slug/pixil-frame-0(5).png" id="4_p5uh7"]
+[ext_resource type="Texture2D" uid="uid://cshr756xrogki" path="res://Enemies/Slug/pixil-frame-0(6).png" id="5_62sh5"]
+[ext_resource type="Texture2D" uid="uid://crljx36dima40" path="res://Enemies/Slug/pixil-frame-0(7).png" id="6_sxh3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1mqf"]
+atlas = ExtResource("1_syflb")
+region = Rect2(0, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3wg"]
+atlas = ExtResource("1_syflb")
+region = Rect2(37, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow5o8"]
+atlas = ExtResource("1_syflb")
+region = Rect2(74, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7h0u"]
+atlas = ExtResource("1_syflb")
+region = Rect2(111, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfvw2"]
+atlas = ExtResource("1_syflb")
+region = Rect2(148, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tu01"]
+atlas = ExtResource("1_syflb")
+region = Rect2(185, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w6u6"]
+atlas = ExtResource("1_syflb")
+region = Rect2(222, 0, 37, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5ks3"]
+atlas = ExtResource("1_syflb")
+region = Rect2(259, 0, 37, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ns37h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1mqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it3wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow5o8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7h0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfvw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tu01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w6u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5ks3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qfoi"]
+size = Vector2(25, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlttb"]
+size = Vector2(25, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32awo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gaivo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p5uh7")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_62sh5")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_sxh3w")
+}],
+"loop": true,
+"name": &"new_animation_2",
+"speed": 5.0
+}]
+
+[node name="Bee" type="Area2D"]
+position = Vector2(0, -46)
+script = ExtResource("1_55xfl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ns37h")
+autoplay = "default"
+frame_progress = 0.994878
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 9)
+shape = SubResource("RectangleShape2D_0qfoi")
+
+[node name="top" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top"]
+position = Vector2(-0.5, -8)
+shape = SubResource("RectangleShape2D_rlttb")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(38, -24)
+sprite_frames = SubResource("SpriteFrames_32awo")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="top" to="." method="_on_top_body_entered"]
